@@ -1,0 +1,5 @@
+# env files
+.env*
+
+# python cache folders
+_*
