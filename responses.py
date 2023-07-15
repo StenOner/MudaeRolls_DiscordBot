@@ -13,7 +13,7 @@ def handle_response(channel_id: int, user_message: str) -> str:
         'Authorization': USER_TOKEN,
     }
     json = {
-        'content': str(command),
+        'content': f'${command}',
     }
     match command:
         case 'cc':
