@@ -6,7 +6,7 @@ load_dotenv()
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 USERS_WHITE_LIST = [224957447096238081]
-USERS_BLACK_LIST = [283333073532223488]
+USERS_BLACK_LIST = []
 CURRENT_PREFIX = '?'
 
 async def send_message(message: discord.Message, user_mesage: str, is_private: bool):
@@ -58,10 +58,10 @@ def run_discord_bot():
     @app_commands.describe(type='Roll type(wa | ha | ma)', amount='Times to roll')
     async def first_command(interaction: discord.Interaction, type: str, amount: int):
         if (interaction.user.id in USERS_BLACK_LIST):
-            await interaction.response.send_message('Calla cholo')
+            await interaction.response.send_message('You are blacklisted')
             return
         if (type not in ['wa', 'ha', 'ma']):
-            await interaction.response.send_message('Roll type is not valid')
+            await interaction.response.send_message(f'Type {type} is not valid')
             return
         await interaction.response.send_message(f'Rolling for {type}!')
         responses.handle_response(interaction.channel_id, f'{type} {amount}')
